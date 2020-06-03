@@ -254,6 +254,11 @@ CATCH_ANNO_SANITIZE_REGEXPS = [
     re.compile(r) for r in ['<\s*script', ]
 ]
 
+# search querystring 'private=CATCH_CONFIRM_INCLUDE_PRIVATE' activates
+# authorization for reads; ATT: searches will be very inneficient
+CATCH_CONFIRM_INCLUDE_PRIVATE = os.environ.get(
+        'CATCH_CONFIRM_INCLUDE_PRIVATE', 'yesplease')
+
 #
 # settings for django-cors-headers
 #

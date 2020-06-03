@@ -66,6 +66,8 @@ class Anno(Model):
     can_update = ArrayField(CharField(max_length=128), null=True, default=list)
     can_delete = ArrayField(CharField(max_length=128), null=True, default=list)
     can_admin = ArrayField(CharField(max_length=128), null=True, default=list)
+    # explicit relational column for public, for performance purpose
+    public = BooleanField(db_index=True, default=True)
 
     # support for only one _text_ body
     # max length for body_text is restricted in django request

@@ -38,6 +38,7 @@ from .anno_defaults import ANNO
 from .anno_defaults import ANNOTATORJS_FORMAT
 from .anno_defaults import CATCH_ADMIN_GROUP_ID
 from .anno_defaults import CATCH_ANNO_FORMAT
+from .anno_defaults import CATCH_CONFIRM_INCLUDE_PRIVATE
 from .anno_defaults import CATCH_CURRENT_SCHEMA_VERSION
 from .anno_defaults import CATCH_JSONLD_CONTEXT_IRI
 from .anno_defaults import CATCH_RESPONSE_LIMIT
@@ -425,12 +426,16 @@ def _do_search_api(request, back_compat=False):
     # filter out the soft-deleted
     query = Anno._default_manager.filter(anno_deleted=False)
 
-    # TODO: check override POLICIES (override allow private reads)
-    if 'CAN_READ' not in payload.get('override', []) \
-       and request.catchjwt['userId'] != CATCH_ADMIN_GROUP_ID:
-        # filter out permission cannot_read
-        q = Q(can_read__len=0) | Q(can_read__contains=[payload['userId']])
-        query = query.filter(q)
+    include_private = request.GET.get('private', None)
+    if include_private and include_private == CATCH_CONFIRM_INCLUDE_PRIVATE:
+        # check override POLICIES (override allow private reads)
+        if 'CAN_READ' not in payload.get('override', []) \
+                and request.catchjwt['userId'] != CATCH_ADMIN_GROUP_ID:
+            # filter out permission cannot_read
+            q = Q(can_read__len=0) | Q(can_read__contains=[payload['userId']])
+            query = query.filter(q)
+    else:  # default: ignore private annotations
+        query = query.filter(public=True)
 
     if back_compat:
         query = process_search_back_compat_params(request, query)

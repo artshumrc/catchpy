@@ -178,6 +178,7 @@ class CRUD(object):
                     can_admin=catcha['permissions']['can_admin'],
                     body_text=body['text'],
                     body_format=body['format'],
+                    public=len(catcha['permissions']['can_read'])==0,
                     raw=catcha,
                 )
 
@@ -251,6 +252,7 @@ class CRUD(object):
         anno.can_admin = catcha['permissions']['can_admin']
         anno.body_text = body['text']
         anno.body_format = body['format']
+        anno.public = len(catcha['permissions']['can_read'])==0
         anno.raw = catcha
 
         try:

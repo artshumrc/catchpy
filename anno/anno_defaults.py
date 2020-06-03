@@ -67,4 +67,9 @@ CATCH_LOG_SEARCH_TIME = getattr(settings, 'CATCH_LOG_SEARCH_TIME')
 CATCH_ANNO_REGEXPS = getattr(settings, 'CATCH_ANNO_SANITIZE_REGEXPS')
 
 
+# activates auth of private annotations in searches
+CATCH_CONFIRM_INCLUDE_PRIVATE = getattr(settings, 'CATCH_CONFIRM_INCLUDE_PRIVATE')
+
+
+
 
