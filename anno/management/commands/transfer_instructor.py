@@ -15,7 +15,7 @@ class Command(BaseCommand):
             "--collection_filepath",
             dest="collection_filepath",
             required=True,
-            help='filepath to json file: [["src_collection_id", "tgt_collection_id"],["src_collection_id2", "tgt_collection_id2"]]',
+            help='filepath to json file: {"src_collection_id": "tgt_collection_id", "src_collection_id2": "tgt_collection_id2"}',
         )
         parser.add_argument(
             "--userid_filepath",
@@ -60,11 +60,12 @@ class Command(BaseCommand):
 
         results = []
         instructors = list(userid_map)
+        collections = list(collection_map)
         # TODO: not testing for repeated collection_id in input.
-        for collection_row in collection_map:
+        for collection_row in collections:
             selected = CRUD.select_annos(
                 context_id=source_context_id,
-                collection_id=collection_row[0],
+                collection_id=collection_row,
                 platform_name=platform_name,
                 userid_list=instructors,
                 is_copy=True,
@@ -73,7 +74,7 @@ class Command(BaseCommand):
             copy_result = CRUD.copy_annos(
                 anno_list=selected,
                 target_context_id=target_context_id,
-                target_collection_id=collection_row[1],
+                target_collection_id=collection_map[collection_row],
                 userid_map=userid_map,
             )
             results.append(
