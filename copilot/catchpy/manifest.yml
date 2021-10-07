@@ -1,0 +1,51 @@
+# The manifest for the "catchpy" service.
+# Read the full specification for the "Load Balanced Web Service" type at:
+#  https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/
+
+# Your service name will be used in naming your resources like log groups, ECS services, etc.
+name: catchpy
+type: Load Balanced Web Service
+
+# Distribute traffic to your service.
+http:
+  # Requests to this path will be forwarded to your service.
+  # To match all requests you can use the "/" path.
+  path: 'catchpy'
+  # You can specify a custom health check path. The default is "/".
+  # healthcheck: '/'
+
+# Configuration for your containers and service.
+image:
+  # Docker build arguments. For additional overrides: https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/#image-build
+  build: Dockerfile.prod
+  # Port exposed through your container to route traffic to it.
+  port: 8000
+
+cpu: 256       # Number of CPU units for the task.
+memory: 512    # Amount of memory in MiB used by the task.
+count: 1       # Number of tasks that should be running in your service.
+exec: true     # Enable running commands in your container.
+
+# Optional fields for more advanced use-cases.
+#
+variables:                    # Pass environment variables as key value pairs.
+ LOG_LEVEL: debug
+ DJANGO_SETTINGS_MODULE: catchpy.settings.prod
+
+# secrets:                      # Pass secrets from AWS Systems Manager (SSM) Parameter Store.
+
+# You can override any of the values defined above by environment.
+environments:
+  prod:
+    secrets:
+      CATCHPY_DB_HOST: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_HOST
+      CATCHPY_DB_PORT: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_PORT
+      CATCHPY_DB_PASSWORD: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_PASSWORD
+      CATCHPY_DB_USER: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_USER
+      CATCHPY_DB_NAME: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_NAME
+      ALLOWED_CIDR_NETS: /copilot/mcih/prod/secrets/ALLOWED_CIDR_NETS_STR
+    variables:
+      LOG_LEVEL: debug
+      DJANGO_SETTINGS_MODULE: catchpy.settings.prod
+#  test:
+#    count: 2               # Number of tasks to run for the "test" environment.
