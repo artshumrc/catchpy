@@ -28,12 +28,12 @@ SECRET_KEY = os.environ.get('CATCHPY_DJANGO_SECRET_KEY', 'CHANGE_ME')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
-# allowed_hosts_other = os.environ.get('CATCHPY_ALLOWED_HOSTS', '')
-# if allowed_hosts_other:
-#     ALLOWED_HOSTS.extend(allowed_hosts_other.split())
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+allowed_hosts_other = os.environ.get('CATCHPY_ALLOWED_HOSTS', '')
+if allowed_hosts_other:
+    ALLOWED_HOSTS.extend(allowed_hosts_other.split())
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 
 
@@ -139,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/catchpy/static/'
 _STATIC_DIRNAME = os.environ.get('CATCHPY_STATIC_DIRNAME', 'static')
 STATIC_ROOT = os.environ.get('CATCHPY_STATIC_ROOT', os.path.join(BASE_DIR, _STATIC_DIRNAME + '/'))
 

@@ -44,6 +44,7 @@ environments:
       CATCHPY_DB_USER: /copilot/mcih/prod/secrets/CATCHPY_DB_USER
       CATCHPY_DB_NAME: /copilot/mcih/prod/secrets/CATCHPY_DB_NAME
       ALLOWED_CIDR_NETS: /copilot/mcih/prod/secrets/ALLOWED_CIDR_NETS_STR
+      CATCHPY_ALLOWED_HOSTS: /copilot/mcih/prod/secrets/CATCHPY_ALLOWED_HOSTS_STR
     variables:
       LOG_LEVEL: debug
       DJANGO_SETTINGS_MODULE: catchpy.settings.prod
