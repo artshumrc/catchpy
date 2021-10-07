@@ -38,11 +38,11 @@ variables:                    # Pass environment variables as key value pairs.
 environments:
   prod:
     secrets:
-      CATCHPY_DB_HOST: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_HOST
-      CATCHPY_DB_PORT: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_PORT
-      CATCHPY_DB_PASSWORD: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_PASSWORD
-      CATCHPY_DB_USER: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_USER
-      CATCHPY_DB_NAME: /copilot/catchpy-app/prod/secrets/CATCHPY_DB_NAME
+      CATCHPY_DB_HOST: /copilot/mcih/prod/secrets/CATCHPY_DB_HOST
+      CATCHPY_DB_PORT: /copilot/mcih/prod/secrets/CATCHPY_DB_PORT
+      CATCHPY_DB_PASSWORD: /copilot/mcih/prod/secrets/CATCHPY_DB_PASSWORD
+      CATCHPY_DB_USER: /copilot/mcih/prod/secrets/CATCHPY_DB_USER
+      CATCHPY_DB_NAME: /copilot/mcih/prod/secrets/CATCHPY_DB_NAME
       ALLOWED_CIDR_NETS: /copilot/mcih/prod/secrets/ALLOWED_CIDR_NETS_STR
     variables:
       LOG_LEVEL: debug
