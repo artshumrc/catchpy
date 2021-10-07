@@ -21,8 +21,8 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    re_path(r'^annos/?', include('anno.urls')),
-    path('version', views.app_version),
-    path('is_alive', views.is_alive),
+    path('catchpy/admin/', admin.site.urls),
+    re_path(r'catchpy/^annos/?', include('anno.urls')),
+    path('catchpy/version', views.app_version),
+    path('catchpy/is_alive', views.is_alive),
 ]
