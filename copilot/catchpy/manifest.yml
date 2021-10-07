@@ -45,8 +45,10 @@ environments:
       CATCHPY_DB_NAME: /copilot/mcih/prod/secrets/CATCHPY_DB_NAME
       ALLOWED_CIDR_NETS: /copilot/mcih/prod/secrets/ALLOWED_CIDR_NETS_STR
       CATCHPY_ALLOWED_HOSTS: /copilot/mcih/prod/secrets/CATCHPY_ALLOWED_HOSTS_STR
+      CATCHPY_DJANGO_SECRET_KEY: /copilot/mcih/prod/secrets/CATCHPY_SECRET_KEY
     variables:
-      LOG_LEVEL: debug
+      CATCHPY_LOG_LEVEL: debug #TODO modify this after setup complete
       DJANGO_SETTINGS_MODULE: catchpy.settings.prod
+      DEBUG: True #TODO turn this off after setup complete
 #  test:
 #    count: 2               # Number of tasks to run for the "test" environment.
