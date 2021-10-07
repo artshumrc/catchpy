@@ -1,1 +1,5 @@
 -r base.txt
+# gunicorn==20.1.0 if mcih style setup?
+django-webserver[waitress]==1.2.0
+waitress==1.4.4
+django-allow-cidr==0.3.1

@@ -3,6 +3,10 @@ catchpy
 
 HarvardX annotations storage API
 
+DARTH notes
+`docker build -t catchpy-test-prod -f Dockerfile.prod .`
+`docker run --env-file .env -p 8000:8000 catchpy-test-prod`
+
 
 Overview
 --------
@@ -36,7 +40,7 @@ Make sure you have docker_ installed to try this quickstart.
     # start docker services
     $> docker-compose up
     $> docker-compose exec web python manage.py migrate
-    $> docker-compese exec web python manage.py createsupersuser
+    $> docker-compose exec web python manage.py createsuperuser
     $> open http://localhost:8000/static/anno/index.html
 
 
