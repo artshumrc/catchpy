@@ -33,9 +33,6 @@ allowed_hosts_other = os.environ.get('CATCHPY_ALLOWED_HOSTS', '')
 if allowed_hosts_other:
     ALLOWED_HOSTS.extend(allowed_hosts_other.split())
 
-# ALLOWED_HOSTS = ['*']
-
-
 
 # Application definition
 

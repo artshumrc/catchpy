@@ -22,7 +22,7 @@ from . import views
 
 urlpatterns = [
     path('catchpy/admin/', admin.site.urls),
-    re_path(r'catchpy/^annos/?', include('anno.urls')),
+    re_path(r'catchpy/annos/?', include('anno.urls')),
     path('catchpy/version', views.app_version),
     path('catchpy/is_alive', views.is_alive),
 ]
